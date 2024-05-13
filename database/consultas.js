@@ -19,7 +19,6 @@ try {
     
 };
 
-
 const leerCancion = async () => {
   try {
     const query = `SELECT * FROM canciones`;
@@ -29,6 +28,22 @@ const leerCancion = async () => {
   }
 };
 
+const modificarCancion = async () => {
+    try {
+        const query = `UPDATE canciones SET cancion = '${cancion}', artista = '${artista}', tono = '${tono}' WHERE id = ${id}`;
+        await dbase.query(query);
+    } catch (error) {
+        console.log(" Se detecto el error", error);
+    }
+};
+
+const borrarCancion = async () => {
+    try {
+        const query = `DELETE FROM canciones WHERE id = ${id}`;
+        await dbase.query(query);
+    } catch (error) {
+        console.log(" Se detecto el error", error);
+    }
 
 //CRUD de canciones
 const funciones = {
