@@ -6,4 +6,5 @@ const port = process.env.PORT || 3000;
 //midelleware para rutas
 app.use('/', router);
 
-app.listen(port, console.log(`Example app listening on port http://localhost:$ {port}`));
+app.listen(port, console.log(`Example app listening on port http://localhost:${port}`));
+
