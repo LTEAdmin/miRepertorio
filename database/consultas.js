@@ -19,7 +19,7 @@ try {
     
 };
 
-const leerCancion = async () => {
+const leerCanciones = async () => {
   try {
     const query = `SELECT * FROM canciones`;
     await dbase.query(query);
@@ -28,6 +28,14 @@ const leerCancion = async () => {
   }
 };
 
+const leerCancion = async () => {
+  try {
+    const query = `SELECT * FROM canciones WHERE id = ${id}`;
+    await dbase.query(query);
+  } catch (error) {
+    console.log(" Se detecto el error", error);
+  }
+};
 const modificarCancion = async () => {
     try {
         const query = `UPDATE canciones SET cancion = '${cancion}', artista = '${artista}', tono = '${tono}' WHERE id = ${id}`;
@@ -44,20 +52,12 @@ const borrarCancion = async () => {
     } catch (error) {
         console.log(" Se detecto el error", error);
     }
-
-//CRUD de canciones
-const funciones = {
-  create: crearCancion,
-  read: leerCancion,
-  update: modificarCancion,
-  delete: borrarCancion,
 };
 
-(async () => {
-  await funciones[funcion]({
-    cancion,
-    artista,
-    tono
-  });
-  pool.end;
-})();
+export {
+  crearCancion,
+  leerCanciones,
+  leerCancion,
+  modificarCancion,
+  borrarCancion,
+};
